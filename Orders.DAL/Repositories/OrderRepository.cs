@@ -22,7 +22,7 @@ namespace Orders.DAL.Repositories
                 await _dbContext.SaveChangesAsync();
                 return entity;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw ex;
             }
@@ -37,7 +37,7 @@ namespace Orders.DAL.Repositories
                 await _dbContext.SaveChangesAsync();
                 return order;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw ex;
             }
@@ -50,7 +50,7 @@ namespace Orders.DAL.Repositories
                 var orders = await _dbContext.order.ToListAsync();
                 return orders;
             }
-            catch (Exception ex) 
+            catch(Exception ex) 
             { 
                 throw ex; 
             }
@@ -63,7 +63,7 @@ namespace Orders.DAL.Repositories
                 var order = await _dbContext.order.FindAsync(id);
                 return order;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw ex;
             }
@@ -78,7 +78,7 @@ namespace Orders.DAL.Repositories
                 await _dbContext.SaveChangesAsync();
                 return entity;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw ex;
             }

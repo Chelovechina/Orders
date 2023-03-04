@@ -1,4 +1,5 @@
-﻿using Orders.DAL.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Orders.DAL.Data;
 using Orders.DAL.Interfaces;
 using Orders.Domain.Entities;
 
@@ -21,7 +22,7 @@ namespace Orders.DAL.Repositories
                 await _dbContext.SaveChangesAsync();
                 return entity;
             }
-            catch (Exception ex) 
+            catch(Exception ex) 
             {
                 throw ex;
             }
@@ -31,12 +32,12 @@ namespace Orders.DAL.Repositories
         {
             try
             {
-                var order = await _dbContext.orderItem.FindAsync(id);
-                _dbContext.orderItem.Remove(order);
+                var orderItem = await _dbContext.orderItem.FindAsync(id);
+                _dbContext.orderItem.Remove(orderItem);
                 await _dbContext.SaveChangesAsync();
-                return order;
+                return orderItem;
             }
-            catch (Exception ex) 
+            catch(Exception ex) 
             { 
                 throw ex; 
             }
@@ -44,17 +45,43 @@ namespace Orders.DAL.Repositories
 
         public async Task<IEnumerable<OrderItem>> Get()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var orderItems = await _dbContext.orderItem.ToListAsync();
+                return orderItems;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<OrderItem> Get(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var orderItem = await _dbContext.orderItem.FindAsync(id);
+                return orderItem;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<OrderItem> Update(OrderItem entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var orderItem = _dbContext.orderItem.Entry(entity);
+                orderItem.State = EntityState.Modified;
+                await _dbContext.SaveChangesAsync();
+                return entity;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
