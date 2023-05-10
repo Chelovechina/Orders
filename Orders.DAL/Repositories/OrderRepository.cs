@@ -5,7 +5,7 @@ using Orders.Domain.Entities;
 
 namespace Orders.DAL.Repositories
 {
-    internal class OrderRepository : IRepository<Order>
+    public class OrderRepository : IRepository<Order>
     {
         private readonly AppDBContext _dbContext;
         
